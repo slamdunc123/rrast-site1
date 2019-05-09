@@ -16,6 +16,7 @@ class ApiOpenWeathers extends Component {
 
     render(){
         console.log(this.props.apiopenweathers); //check if api data is being fetched
+        console.log(this.props.apicityid);
         return(
             <div className="container">
             <button className="btn btn-primary" onClick={this.handleClick}>OpenWeathers</button>

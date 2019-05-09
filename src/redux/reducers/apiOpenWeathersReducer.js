@@ -1,10 +1,11 @@
 import { FETCH_API_OPENWEATHERS } from '../actions/actionTypes'
 
 const initState = {
-    apiopenweathers: []
+    apiopenweathers: [],
 }
 
 const apiOpenWeathersReducer = (state = initState, action) => {
+    console.log(state);
     switch(action.type){
         case FETCH_API_OPENWEATHERS:
             return {
