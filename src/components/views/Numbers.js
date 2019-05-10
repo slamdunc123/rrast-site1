@@ -26,7 +26,7 @@ class Numbers extends Component {
         let value = event.target.value;
         this.setState({
             value: value,
-            apiURL: "https://randomuser.me/api/?results=" + value + ";"
+            apiURL: "https://randomuser.me/api/?results=" + value + ""
         
          }
         
