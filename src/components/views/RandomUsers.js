@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import axios from 'axios';
 
-class RandomUsers extends React.Component {
+class RandomUsers extends Component {
    
     constructor(props){
         super(props);
         this.state = {
-            data : []
+            users : []
         }
+        console.log('url prop received - ' + this.props.url);
+        console.log(this.state.users);
     }
     
     componentDidUpdate(prevProps){
         
-        console.log(this.props.url);
-        axios.get(this.props.url)
-        .then(response => {
-            const data = response.data.results;
+        let apiURL = this.props.url;
+
+        console.log(apiURL);
+        // console.log(prevProps.apiURL);
+
+        axios.get(apiURL)
+        .then(res => {
+            console.log(apiURL);
+            const usersArr = res.data.results;
+            console.log(usersArr);
+            console.log(res.data);
             if(this.props.url !== prevProps.url){
                 this.setState({
-                    data
+                    users: usersArr
                 })
-                // console.log(response.data.results);
+                console.log(res.data.results);
+                console.log(this.state.users);
             }
             
         })
@@ -33,15 +43,25 @@ class RandomUsers extends React.Component {
     }
 
     render() {
-
+        console.log(this.props.url);
         return (
-          <div>
-            {this.state.data.map(item =>
-            <div key={item.login.uuid}>
-                <div>{item.login.uuid}</div>
-                <div>{item.gender}</div>
-            </div>
+            <div className="container">
+            <table className="table table-dark">
+                <thead>
+                    <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+            {this.state.users.map(user =>
+            <tr key={user.login.uuid}>
+                <td>{user.login.uuid}</td>
+                <td>{user.name.first}</td>
+            </tr>
             )}
+        </tbody>
+        </table>
         </div>
         );
       }

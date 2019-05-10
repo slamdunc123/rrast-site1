@@ -16,6 +16,7 @@ class Cities extends Component {
         super(props);
         this.state = { // set initial state
             cities: citiesArr,
+            value: '',
             apiURL: "http://api.openweathermap.org/data/2.5/forecast?id=519188&APPID=9e3b41b556d2b7085e43777a1f5d5923"
         }
         // this.handleChange = this.handleChange.bind(this)
@@ -26,9 +27,9 @@ class Cities extends Component {
         console.log(event.target.value);
         let value = event.target.value;
         this.setState({
+            value: value,
             apiURL: "http://api.openweathermap.org/data/2.5/forecast?id=" + value + "&APPID=8f3bce6554087613da59a6627c23c861"
-        
-         }
+         } 
          
         //  ,
         //     this.changeStyle // callback function to ensure change is made at the right moment
@@ -41,17 +42,19 @@ class Cities extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <select onChange={this.handleChange}>
+                <option value="">Choose a city</option>
                     {this.state.cities.map(city =>
                         <option value={city.id}>
                             {city.name}
                         </option>
-                        // <div key={city.id}>
-                        //     <div>{city.id}</div>
-                        // </div> 
                     )}
                 </select>
+                <br/>
+                <br/>
+                <div>{this.state.value}</div>
+                
                 {console.log('url prop sent - ' + this.state.apiURL)}
                 <Weather url={this.state.apiURL}/>
                 {/* ok - up to here */}

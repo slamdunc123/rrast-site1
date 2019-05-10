@@ -48,6 +48,9 @@ class Weather extends Component {
                             <th>date/time</th>
                             <th>forecast</th>
                             <th>temp</th>
+                            <th>humidity</th>
+                            <th>image</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +59,8 @@ class Weather extends Component {
                                 <td>{forecast.dt_txt}</td>
                                 <td>{forecast.weather[0].description}</td>
                                 <td>{Math.floor(forecast.main.temp - 273.15)}</td>
+                                <td>{forecast.main.humidity}</td>
+                                <td>{forecast.main.humidity > 85 ? 'steamy' : 'drips'}</td>
                             </tr>
                         )}
                     </tbody>

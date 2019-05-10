@@ -25,6 +25,7 @@ class Numbers extends Component {
         console.log(event.target.value);
         let value = event.target.value;
         this.setState({
+            value: value,
             apiURL: "https://randomuser.me/api/?results=" + value + ";"
         
          }
@@ -47,7 +48,7 @@ class Numbers extends Component {
                         // </div> 
                     )}
                 </select>
-                {/* {console.log('url prop sent - ' + this.state.apiURL)} */}
+                {console.log('url prop sent - ' + this.state.apiURL)}
                 <RandomUsers url={this.state.apiURL}/>
                 {/* ok - up to here */}
             </div>
