@@ -15,7 +15,7 @@ class Numbers extends Component {
         super(props);
         this.state = { // set initial state
             nums: numArr,
-            apiURL: "https://randomuser.me/api/?results=5;"
+            apiURL: "https://randomuser.me/api/?results=5"
         }
         // this.handleChange = this.handleChange.bind(this)
     }

@@ -12,6 +12,35 @@ class RandomUsers extends Component {
         console.log('url prop received - ' + this.props.url);
         console.log(this.state.users);
     }
+
+    componentDidMount(){
+        
+        let apiURL = this.props.url;
+
+        console.log(apiURL);
+        // console.log(prevProps.apiURL);
+
+        axios.get(apiURL)
+        .then(res => {
+            console.log(apiURL);
+            const usersArr = res.data.results;
+            console.log(usersArr);
+            console.log(res.data);
+            
+                this.setState({
+                    users: usersArr
+                })
+                console.log(res.data.results);
+                console.log(this.state.users);
+            
+            
+        })
+        
+        .catch(error => {
+            console.log(error);
+        })
+    
+    }
     
     componentDidUpdate(prevProps){
         
@@ -51,6 +80,7 @@ class RandomUsers extends Component {
                     <tr>
                     <th>id</th>
                     <th>name</th>
+                    <th>image</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,6 +88,7 @@ class RandomUsers extends Component {
             <tr key={user.login.uuid}>
                 <td>{user.login.uuid}</td>
                 <td>{user.name.first}</td>
+                <td><img src={user.picture.medium} alt=""/></td>
             </tr>
             )}
         </tbody>
