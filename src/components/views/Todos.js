@@ -5,9 +5,11 @@ class Todo extends Component {
     constructor(props) {
         super(props);
 
+    // initial state
         this.state = {
             add: true,
             edit: false,
+            actions: true,
             id: null,
             message: '',
             mockData: [{
@@ -34,14 +36,15 @@ class Todo extends Component {
         }
 
         // this function call bindings
-        this.onSubmitHandle = this.onSubmitHandle.bind(this);
-        this.onDeleteHandle = this.onDeleteHandle.bind(this);
-        this.onEditHandle = this.onEditHandle.bind(this);
-        this.onUpdateHandle = this.onUpdateHandle.bind(this);
-        this.onCompleteHandle = this.onCompleteHandle.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleComplete = this.handleComplete.bind(this);
     }
 
-    onSubmitHandle(event) {
+    // handle add button click
+    handleAdd(event) {
         event.preventDefault();
 
         let idNum = Math.floor((Math.random() * 1000) + 9999); // generate random number for id
@@ -78,7 +81,8 @@ class Todo extends Component {
         event.target.item.value = '';
     }
 
-    onDeleteHandle(id) {
+    // handle delete button click
+    handleDelete(id) {
         // let id = arguments[0];
         const { mockData } = this.state;
         const remainingTitles = mockData.filter(item => {
@@ -95,14 +99,14 @@ class Todo extends Component {
                 message: "No items"
             })
         }
-        
-        
     }
 
-    onEditHandle(id, title) {
+    // handle edit button click
+    handleEdit(id, title) {
         this.setState({
             add: false,
             edit: true,
+            actions: false,
             // id: arguments[0],
             // title: arguments[1]
             id: id,
@@ -110,7 +114,8 @@ class Todo extends Component {
         });
     }
 
-    onUpdateHandle(event) {
+    // hancdle update button click
+    handleUpdate(event) {
         event.preventDefault();
 
         this.setState({
@@ -126,11 +131,13 @@ class Todo extends Component {
 
         this.setState({
             add: true,
-            edit: false
+            edit: false,
+            actions: true
         });
     }
 
-    onCompleteHandle(id) {
+    // handle complete button click
+    handleComplete(id) {
         // let id = arguments[0];
 
         this.setState({
@@ -145,11 +152,12 @@ class Todo extends Component {
         });
     }
 
+    // render add form
     renderAddForm(){
         if (this.state.add){
-            return <form onSubmit={this.onSubmitHandle}>
+            return <form onSubmit={this.handleAdd}>
             <div className="form-group">
-                <label className="" htmlFor="add-todo">Add New Item</label>
+                <label className="" htmlFor="add-todo">Add Item &nbsp;</label>
                 <input type="text" name="item" className="item" id="add-todo" />
                 <button className="btn btn-primary btn-add-item">Add</button>
             </div>
@@ -157,68 +165,71 @@ class Todo extends Component {
         }
     }
 
+    // render edit form
     renderEditForm() {
         if (this.state.edit) {
-            return <form onSubmit={this.onUpdateHandle}>
-                <input type="text" name="updatedItem" className="item" defaultValue={this.state.title} />
+            return <form onSubmit={this.handleUpdate}>
+            <label className="" htmlFor="edit-todo">Edit Item $nbsp;</label>
+                <input type="text" name="updatedItem" className="item" id="edit-todo" defaultValue={this.state.title} />
                 <button className="btn btn-primary update-add-item">Update</button>
             </form>
         }
     }
 
+    // render todos table
     renderTodosTable(){
         if (this.state.actions) {
-            return <form onSubmit={this.onUpdateHandle}>
-                <input type="text" name="updatedItem" className="item" defaultValue={this.state.title} />
-                <button className="btn btn-primary update-add-item">Update</button>
-            </form>
+            return <table className="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Todo</th>
+                    {/* <th>Date</th> */}
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {this.state.mockData.map(item => {
+                return (
+                   
+                    <tr key={item.id} className={item.done ? 'done' : 'hidden'}>
+                        <th scope="row">1</th>
+                        <td>{item.id}</td>
+                        <td>{item.title}</td>
+                        {/* <td>{item.date}</td> */}
+                        {/* include an arrow function to prevent the call firing straigh away */}
+                        <td><button onClick={() => this.handleDelete(item.id)} className="btn btn-danger">Delete</button></td> 
+                        <td><button onClick={() => this.handleEdit(item.id, item.title)} className="btn btn-warning">Edit</button></td>
+                        <td><button onClick={() => this.handleComplete(item.id)} className="btn btn-info">Complete</button></td>
+                    </tr>
+                )
+            })}
+        </tbody>
+        </table>
         }
     }
 
+    // main component render
     render() {
         const { mockData, message } = this.state;
         if(!this.state.add){
 
         }
         return (
-            <div>
+            <div className="container">
                 <h3>Todos</h3>
                 {/* these 2 functions are called straight away to render the add and edit forms - they will only render if their state is true */}
                 {this.renderEditForm()}
                 {this.renderAddForm()}
                 
+                
                 <div className="content">
                     {
                         (message !== '' || mockData.length === 0) && <p className="message text-danger">{message}</p>
                     }
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>ID</th>
-                                <th>Todo</th>
-                                {/* <th>Date</th> */}
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {this.state.mockData.map(item => {
-                                return (
-                                    <tr key={item.id} className={item.done ? 'done' : 'hidden'}>
-                                        <th scope="row">1</th>
-                                        <td>{item.id}</td>
-                                        <td>{item.title}</td>
-                                        {/* <td>{item.date}</td> */}
-                                        {/* include an arrow function to prevent the call firing straigh away */}
-                                        <td><button onClick={() => this.onDeleteHandle(item.id)} className="btn btn-danger">Delete</button></td> 
-                                        <td><button onClick={() => this.onEditHandle(item.id, item.title)} className="btn btn-warning">Edit</button></td>
-                                        <td><button onClick={() => this.onCompleteHandle(item.id)} className="btn btn-info">Complete</button></td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                    {/* call for todos table to be rendered */}
+                    {this.renderTodosTable()}
                 </div>
             </div>
         );
