@@ -82,9 +82,8 @@ class Todo extends Component {
         // let id = arguments[0];
         const { mockData } = this.state;
         const remainingTitles = mockData.filter(item => {
-            if (item.id !== id) {
-                return item;
-            }
+            return item.id !== id;
+             
         })
         this.setState({
             mockData: [...remainingTitles]
@@ -118,7 +117,7 @@ class Todo extends Component {
             mockData: this.state.mockData.map(item => {
                 if (item.id === this.state.id) {
                     item['title'] = event.target.updatedItem.value;
-                    return item;
+                    // return item;
                 }
 
                 return item;
@@ -138,7 +137,7 @@ class Todo extends Component {
             mockData: this.state.mockData.map(item => {
                 if (item.id === id) {
                     item['done'] = true;
-                    return item;
+                    // return item;
                 }
 
                 return item;
@@ -162,7 +161,16 @@ class Todo extends Component {
         if (this.state.edit) {
             return <form onSubmit={this.onUpdateHandle}>
                 <input type="text" name="updatedItem" className="item" defaultValue={this.state.title} />
-                <button className="update-add-item">Update</button>
+                <button className="btn btn-primary update-add-item">Update</button>
+            </form>
+        }
+    }
+
+    renderTodosTable(){
+        if (this.state.actions) {
+            return <form onSubmit={this.onUpdateHandle}>
+                <input type="text" name="updatedItem" className="item" defaultValue={this.state.title} />
+                <button className="btn btn-primary update-add-item">Update</button>
             </form>
         }
     }
