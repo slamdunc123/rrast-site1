@@ -59,39 +59,129 @@ class Navigation extends Component {
                             <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/contact">Contact</Link></NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/posts">Posts</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/users">Users</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/cities">Cities</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/teams">Teams</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/numbers">Numbers</Link></NavLink>
-                            </NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
+                                <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/players">Players</Link></NavLink>
+                            </NavItem> */}
+                            {/* <NavItem>
+                                <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/todos">Todos</Link></NavLink>
+                            </NavItem> */}
+                            {/* <NavItem>
+                                <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/form">Form</Link></NavLink>
+                            </NavItem> */}
                             {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apiposts">ApiPosts</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apiusers">ApiUsers</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apicomments">ApiComments</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apitodos">ApiTodos</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apibootswatches">ApiBootswatches</Link></NavLink>
-                            </NavItem>
-                            <NavItem>
+                            </NavItem> */}
+                            {/* <NavItem>
                                 <NavLink><Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/apiopenweathers">ApiOpenWeathers</Link></NavLink>
                             </NavItem> */}
+                            <NavItem>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Components
+                                </DropdownToggle>
+                                    <DropdownMenu right>
+
+                                        <NavLink>
+                                        <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/posts">
+                                                <DropdownItem>
+                                                    Posts
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/users">
+                                                <DropdownItem>
+                                                    Users
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/cities">
+                                                <DropdownItem>
+                                                    Cities
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/teams">
+                                                <DropdownItem>
+                                                    Teams
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/numbers">
+                                                <DropdownItem>
+                                                    Numbers
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/players">
+                                                <DropdownItem>
+                                                    Players
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/todos">
+                                                <DropdownItem>
+                                                    Todos
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/form">
+                                                <DropdownItem>
+                                                    Form
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        {/* <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem> */}
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </NavItem>
                             <NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>

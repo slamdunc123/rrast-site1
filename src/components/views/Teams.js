@@ -15,6 +15,7 @@ class Teams extends Component {
         .then(data => {
           let teamsFromApi = data.map(team => { return {value: team, display: team} })
           this.setState({ teams: [{value: '', display: '(Select your favourite team)'}].concat(teamsFromApi) });
+          console.log(this.state)
         }).catch(error => {
           console.log(error);
         });

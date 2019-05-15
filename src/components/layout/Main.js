@@ -10,6 +10,9 @@ import Users from '../views/Users';
 import Cities from '../views/Cities';
 import Teams from '../views/Teams';
 import Numbers from '../views/Numbers';
+import Players from '../views/Players';
+import Todos from '../views/Todos';
+import Form from '../views/Form';
 import ApiPosts from '../views/ApiPosts';
 import ApiUsers from '../views/ApiUsers';
 import ApiComments from '../views/ApiComments';
@@ -35,6 +38,9 @@ const Main = () => {
                 <Route path="/cities" component={Cities} />
                 <Route path="/teams" component={Teams} />
                 <Route path="/numbers" component={Numbers} />
+                <Route path="/players" component={Players} />
+                <Route path="/todos" component={Todos} />
+                <Route path="/form" component={Form} />
                 <Route path="/apiposts" component={ApiPosts} />
                 <Route path="/apiusers" component={ApiUsers} />
                 <Route path="/apicomments" component={ApiComments} />

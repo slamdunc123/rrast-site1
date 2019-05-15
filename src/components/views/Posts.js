@@ -1,13 +1,26 @@
 import React, { Component } from 'react'
 
+// components
+import PostAdd from './PostAdd'
+
 // redux imports
 import { connect } from 'react-redux';
 
 class Posts extends Component {
+
+    handleEdit = () => {
+        alert('you hit an edit button');
+    }
+
+    handleDelete = () => {
+        alert('you hit a delete button');
+    }
+
     render() {
         console.log(this.props); // grabs users from mapStateToProps
         return (
             <div className="container">
+                <PostAdd />
                 <table className="table table-dark">
                     <thead>
                         <tr>
@@ -20,6 +33,8 @@ class Posts extends Component {
                             <tr key={post.id}>
                                 <td>{post.id}</td>
                                 <td>{post.title}</td>
+                                <td><button className="btn btn-warning" onClick={this.handleEdit}>Edit</button></td>
+                                <td><button className="btn btn-danger" onClick={this.handleDelete}>Delete</button></td>
                             </tr>
                         )}
                     </tbody>
