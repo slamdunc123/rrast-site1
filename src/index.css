@@ -20,3 +20,7 @@ a.nav-link {
 .done {
   text-decoration: line-through;
 }
+
+.item {
+  border-bottom: 2px solid black;
+}

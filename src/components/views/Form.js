@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Tests extends Component{
+class Form extends Component{
 constructor(props) {
   super(props);
   this.state = {
@@ -8,24 +8,33 @@ constructor(props) {
     email: '',
     password: ''
   };
-
+ // this function call bindings
   this.handleSubmit = this.handleSubmit.bind(this);
   this.handleInputChange = this.handleInputChange.bind(this);
 }
 
+// handle change to form inputs
 handleInputChange(event) {
+  // console.log(event);
+
+  // get the event.target.name (which will be either "newsletter", "email" or "password")
+  // and use it to target the key on our `state` object with the same name, using bracket syntax : eg this.setState({ [event.target.name]: event.target.value });
+  //use this method instead of having a handleChange listener on each form element
   const target = event.target;
-  const value = target.type === 'checkbox' ? target.checked : target.value;
-  const name = target.name;
+  const value = target.type === 'checkbox' ? target.checked : target.value; //this needs additional logig
+  const name = target.name; //combine all input name attributes
+  console.log(target.name);
 
-  // console.log(`Input name ${name}. Input value ${value}.`);
+  // console.log(`Input name ${name}. Input value ${value}.`); //this logs all the individual changes ie each letter input
 
-  this.setState({
+  this.setState({ //update state with all form input changes ie gets the values of newsletter, email and password and applies them to bracketed [name] to then update state eg this.setState({ [event.target.name]: event.target.value });
     [name]: value
   });
 }
 
+// handle form submit
 handleSubmit(event){
+  // console.log(event);
   event.preventDefault();
   console.log(this.state);
 }
@@ -66,4 +75,4 @@ render() {
 
 
 
-export default Tests
+export default Form

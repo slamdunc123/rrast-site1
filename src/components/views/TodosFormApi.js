@@ -1,56 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import axios from 'axios';
 
-class Todo extends Component {
+class TodosFormApi extends React.Component {
 
-    constructor(props) {
+    constructor(props){
         super(props);
 
-    // initial state
         this.state = {
             add: true,
             edit: false,
             actions: true,
             id: null,
             message: '',
-            mockData: [{
-                id: '1',
-                title: 'Buy Milk',
-                done: false,
-                date: new Date()
-            }, {
-                id: '2',
-                title: 'Meeting with Ali',
-                done: false,
-                date: new Date()
-            }, {
-                id: '3',
-                title: 'Tea break',
-                done: false,
-                date: new Date()
-            }, {
-                id: '4',
-                title: 'Go for a run',
-                done: false,
-                date: new Date()
-            }]
+            todos: []
         }
 
-        // this function call bindings
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-        this.handleUpdate = this.handleUpdate.bind(this);
-        this.handleComplete = this.handleComplete.bind(this);
+         // this function call bindings
+         this.handleAdd = this.handleAdd.bind(this);
+         this.handleDelete = this.handleDelete.bind(this);
+         this.handleEdit = this.handleEdit.bind(this);
+         this.handleUpdate = this.handleUpdate.bind(this);
+         this.handleComplete = this.handleComplete.bind(this);
+     
+    }
+    
+    // api data
+    componentDidMount(){
+        axios.get('https://jsonplaceholder.typicode.com/todos')
+        .then(res => {
+            const todos = res.data;
+            this.setState({
+                todos
+            })
+        })
     }
 
-    // handle add button click
+    // handle add event
     handleAdd(event) {
         event.preventDefault();
 
         let idNum = Math.floor((Math.random() * 1000) + 9999); // generate random number for id
-        const { mockData } = this.state; //deconstructing state object
+        const { todos } = this.state; //deconstructing state object
         const newTitle = event.target.item.value; //assign value of form input to a variable - in form where handleAdd is called
-        const isOnTheList = mockData.find(objIndex => objIndex.title === newTitle); // checks for title in the mockData array - objIndex can be anything eg x or item
+        const isOnTheList = todos.find(objIndex => objIndex.title === newTitle); // checks for title in the todos array - objIndex can be anything eg x or item
         if (newTitle !== ''){ //do if there is a value ie data input
             if (isOnTheList) { //do if data in list
                 console.log('Already on list ' + newTitle)
@@ -60,14 +52,15 @@ class Todo extends Component {
             } else { //do if data not in list
                 console.log('Great a new title')
                 this.setState({ //append new input data to state
-                    mockData: [...this.state.mockData, {
+                    todos: [...this.state.todos, {
                         id: idNum,
                         title: newTitle,
-                        done: false,
-                        date: new Date()
+                        completed: false,
+                        userId: idNum * 2
+                        // date: new Date()
                     }],
     
-                    message: 'New title added' //reset message
+                    message: '' //reset message
                 });
             }
 
@@ -80,19 +73,18 @@ class Todo extends Component {
 
         event.target.item.value = ''; //reset input field
     }
-
-    // handle delete button click
-    handleDelete(id) {
+    // handle delete event
+    handleDelete(id){
         // let id = arguments[0];
-        const { mockData } = this.state; //destructure state object
-        const remainingTitles = mockData.filter(item => { //get list of items minus deleted one
+        const { todos } = this.state; //destructure state object
+        const remainingTitles = todos.filter(item => { //get list of items minus deleted one
             return item.id !== id; //return remaining items
              
         })
         this.setState({ //update state with remaining items
-            mockData: [...remainingTitles]
+            todos: [...remainingTitles]
         })
-        console.log(this.state.mockData)
+        console.log(this.state.todos)
         console.log(id + ' deleted')
         if(remainingTitles.length === 0){ //do if there are no remaining items
             this.setState({
@@ -114,12 +106,12 @@ class Todo extends Component {
         });
     }
 
-    // hancdle update button click
+    // handle update button click
     handleUpdate(event) {
         event.preventDefault();
 
         this.setState({
-            mockData: this.state.mockData.map(item => {
+            todos: this.state.todos.map(item => {
                 if (item.id === this.state.id) {
                     item['title'] = event.target.updatedItem.value;
                     // return item;
@@ -141,7 +133,7 @@ class Todo extends Component {
         // let id = arguments[0];
 
         this.setState({
-            mockData: this.state.mockData.map(item => {
+            todos: this.state.todos.map(item => {
                 if (item.id === id) {
                     item['done'] = true;
                     // return item;
@@ -190,7 +182,7 @@ class Todo extends Component {
                 </tr>
             </thead>
             <tbody>
-            {this.state.mockData.map(item => {
+            {this.state.todos.map(item => {
                 return (
                    
                     <tr key={item.id} className={item.done ? 'done' : 'hidden'}>
@@ -209,10 +201,10 @@ class Todo extends Component {
         </table>
         }
     }
-
-    // main component render
+    
     render() {
-        const { mockData, message } = this.state;
+        const { todos, message } = this.state;
+        console.log(todos);
         // if(!this.state.add){
 
         // }
@@ -226,7 +218,7 @@ class Todo extends Component {
                 
                 <div className="content">
                     {
-                        (message !== '' || mockData.length === 0) && <p className="message text-danger">{message}</p>
+                        (message !== '' || todos.length === 0) && <p className="message text-danger">{message}</p>
                     }
                     {/* call for todos table to be rendered */}
                     {this.renderTodosTable()}
@@ -236,4 +228,5 @@ class Todo extends Component {
     }
 }
 
-export default Todo;
+export default TodosFormApi
+

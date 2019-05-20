@@ -12,6 +12,9 @@ import Teams from '../views/Teams';
 import Numbers from '../views/Numbers';
 import Players from '../views/Players';
 import Todos from '../views/Todos';
+import TodosFormApi from '../views/TodosFormApi';
+import UsersFormApi from '../views/UsersFormApi';
+import UsersFormApiRedux from '../views/UsersFormApiRedux';
 import Form from '../views/Form';
 import ApiPosts from '../views/ApiPosts';
 import ApiUsers from '../views/ApiUsers';
@@ -40,6 +43,9 @@ const Main = () => {
                 <Route path="/numbers" component={Numbers} />
                 <Route path="/players" component={Players} />
                 <Route path="/todos" component={Todos} />
+                <Route path="/todosformapi" component={TodosFormApi} />
+                <Route path="/usersformapi" component={UsersFormApi} />
+                <Route path="/usersformapiredux" component={UsersFormApiRedux} />
                 <Route path="/form" component={Form} />
                 <Route path="/apiposts" component={ApiPosts} />
                 <Route path="/apiusers" component={ApiUsers} />

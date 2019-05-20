@@ -3,6 +3,7 @@ export const FETCH_API_POSTS = 'FETCH_API_POSTS';
 
 // users
 export const FETCH_API_USERS = 'FETCH_API_USERS';
+export const DELETE_USER = 'DELETE_USER';
 
 // comments
 export const FETCH_API_COMMENTS = 'FETCH_API_COMMENTS';

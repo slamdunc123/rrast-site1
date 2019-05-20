@@ -165,6 +165,31 @@ class Navigation extends Component {
                                         </NavLink>
 
                                         <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/todosformapi">
+                                                <DropdownItem>
+                                                    TodosFormApi
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/usersformapi">
+                                                <DropdownItem>
+                                                    UsersFormApi
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+                                        <NavLink>
+                                            <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/usersformapiredux">
+                                                <DropdownItem>
+                                                    UsersFormApiRedux
+                                            </DropdownItem>
+                                            </Link>
+                                        </NavLink>
+
+
+                                        <NavLink>
                                             <Link className="nav-link" onClick={(e) => { this.closeBurgerMenu(e) }} to="/form">
                                                 <DropdownItem>
                                                     Form
